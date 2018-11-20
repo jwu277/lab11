@@ -51,7 +51,7 @@ Let's look at the `Formula.g4` file containing a grammar we will provide to ANTL
 
 Compile the `Formula.g4` file to automatically generate a lexer and parser by following these instructions. 
 
- - Open up a terminal or a command prompt, and from the root folder for the project (the one that contains `build.gradle`), execute: `grade generateGrammarSource`
+ - Open up a terminal or a command prompt, and from the root folder for the project (the one that contains `build.gradle`), execute: `gradle generateGrammarSource`
  - Notice that our `build.gradle` file has listed `antlr` as a plugin and a dependency on Antlr v4.
  - This operation should generate Java source code in the directory `build/generated-src/main/antlr`.
  - Copy the files generated too `src/main/java/formula`.
