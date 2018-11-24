@@ -58,6 +58,17 @@ public class FormulaFactory {
         }
 
         @Override
+        public void exitTerm(FormulaParser.TermContext ctx) {
+
+            if (ctx.NOT() != null) {
+                Formula f = stack.pop();
+                Formula not = new Not(f);
+                stack.push(not);
+            }
+
+        }
+
+        @Override
         public void exitConjunction(FormulaParser.ConjunctionContext ctx) {
             if (ctx.AND() != null) {
                 // we matched the AND rule
@@ -88,6 +99,9 @@ public class FormulaFactory {
 
         public void enterConjunction(FormulaParser.ConjunctionContext ctx) { System.err.println("entering conjunction " + ctx.getText()); }
         public void exitConjunction(FormulaParser.ConjunctionContext ctx) { System.err.println("exiting conjunction " + ctx.getText()); }
+
+        public void enterTerm(FormulaParser.TermContext ctx) { System.err.println("entering term " + ctx.getText()); }
+        public void exitTerm(FormulaParser.TermContext ctx) { System.err.println("exiting term " + ctx.getText()); }
 
         public void enterLiteral(FormulaParser.LiteralContext ctx) { System.err.println("entering literal " + ctx.getText()); }
         public void exitLiteral(FormulaParser.LiteralContext ctx) { System.err.println("exiting literal " + ctx.getText()); }

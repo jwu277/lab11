@@ -29,9 +29,10 @@ grammar Formula;
  * These are the lexical rules. They define the tokens used by the lexer.
  *   *** Antlr requires tokens to be CAPITALIZED, like START_ITALIC, END_ITALIC, and TEXT.
  */
-TRUE : 'T';
-FALSE : 'F';
+TRUE : 'T' | 'true';
+FALSE : 'F' | 'false';
 AND : '&';
+NOT : '!';
 WHITESPACE : [ \t\r\n]+ -> skip ;
 
 /*
@@ -39,5 +40,6 @@ WHITESPACE : [ \t\r\n]+ -> skip ;
  *    *** Antlr requires grammar nonterminals to be lowercase, like html, normal, and italic.
  */
 formula : conjunction EOF ;
-conjunction: conjunction AND conjunction | literal ;
+conjunction: conjunction AND conjunction | term ;
+term: literal | NOT literal;
 literal : TRUE | FALSE ;
